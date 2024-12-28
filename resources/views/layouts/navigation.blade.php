@@ -15,7 +15,7 @@
 
                        <!-- HOME LINK  -->
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                        {{ __('Courses') }}
                     </x-nav-link>
 
 
