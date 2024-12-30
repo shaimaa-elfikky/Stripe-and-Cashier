@@ -13,16 +13,25 @@
  
             <div class="card col-4">
                 <div class="p-6 text-gray-900">
-                    <a href="{{route('courses.show',$course)}}">
-                    <h5>  {{$course -> name}} </h4>
-                    </a>
-                   
-                    <p> {{$course -> description}} </p>
-                    <p> {{$course -> price }} </p>
-                    <a class="btn btn-sm btn-primary" href=""> ADD to CART</a>
 
+                    <a href="{{route('courses.show',$course)}}">
+
+                    <h5>  {{$course -> name}} </h4>
+
+                    </a>      
+                                
+                    <p> {{$course -> description}} </p>
+
+                    <p> {{$course -> price }} </p>
+                     @if($carts && $carts->courses->contains($course))
+
+                     <a class="btn btn-sm btn-danger" href="{{route('removeFromCart',$course)}}"> Remove From Cart</a>
+                     @else
+                    <a class="btn btn-sm btn-primary" href="{{route('addToCart',$course)}}"> Add To Cart</a>
+                    @endif
                 </div>
-                </div>
+            
+            </div>
        
 
         @endforeach

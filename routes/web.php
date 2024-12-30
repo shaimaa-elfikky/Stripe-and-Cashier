@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Cart;
 use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
     $courses = Course::all();
+    
+   // $carts = Cart::where('session_id', session()->getId())->first();
 
     return view('home',compact('courses'));
 })->name('home');
@@ -17,6 +21,20 @@ Route::get('/', function () {
 
 Route::controller(CoursesController::class)->group( function(){
     Route::get('/courses/{course:slug}','show')->name('courses.show');
+});
+
+
+//CARTS MANGEMENTS 
+
+
+Route::controller(CartController::class)->group( function(){
+
+    Route::get('/cart', 'index')->name('cart.index');
+
+    Route::get('/addToCart/{course:slug}','addToCart')->name('addToCart');
+
+    Route::get('/removeFromCart/{course:slug}','removeFromCart')->name('removeFromCart');
+
 });
 
 Route::get('/dashboard', function () {
