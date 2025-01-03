@@ -15,7 +15,7 @@
                     <div class="bg-light mb-3 p-3 d-flex justify-content-between align-items-center">
                     <h6>{{$course->name}}
 
-                     <small class="text-primary">({{$course->price}})</small>
+                     <small class="text-primary">({{$course->price()}})</small>
 
                     </h6>
                  
@@ -23,6 +23,16 @@
                     </div>
                  
                     @endforeach
+
+                    <div class="bg-light mb-3 p-3 d-flex justify-content-between align-items-center">
+                    <h6>Total
+
+                     <small class="text-primary">({{$carts->total()}})</small>
+
+                    </h6>
+                 
+                    <a href="#" class="btn btn-sm btn-success">Checkout</a>
+                    </div>
                  
                 @else
                   <div class="alert alert-info"> Your Cart Is Empty</div>

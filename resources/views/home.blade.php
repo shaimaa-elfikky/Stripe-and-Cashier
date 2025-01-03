@@ -22,7 +22,7 @@
                                 
                     <p> {{$course -> description}} </p>
 
-                    <p> {{$course -> price }} </p>
+                    <p> {{$course -> price() }} </p>
                      @if($carts && $carts->courses->contains($course))
 
                      <a class="btn btn-sm btn-danger" href="{{route('removeFromCart',$course)}}"> Remove From Cart</a>
