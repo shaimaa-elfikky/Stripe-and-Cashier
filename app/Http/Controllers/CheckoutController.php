@@ -13,12 +13,14 @@ class CheckoutController extends Controller
 
         $cart = Cart::session()->first();
 
-        $prices = $cart->courses->pluck('stripe_price_id')->toArray();
-        
+        $prices = $cart->courses->pluck('stripe_price_id')->toArray();       
 
-        return  Auth::user()->checkout($prices);
+        $sessionOptions = [
+            'cancel_url' => route('home',['message' =>'Payment Failed!']),
+            'success_url' => route('home',['message' =>'Payment Successfull!']),
+        ] ;
 
-       
+        return  Auth::user()->checkout($prices , $sessionOptions);   
         
     }
 }
