@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Cart;
@@ -25,8 +26,6 @@ Route::controller(CoursesController::class)->group( function(){
 
 
 //CARTS MANGEMENTS 
-
-
 Route::controller(CartController::class)->group( function(){
 
     Route::get('/cart', 'index')->name('cart.index');
@@ -36,6 +35,18 @@ Route::controller(CartController::class)->group( function(){
     Route::get('/removeFromCart/{course:slug}','removeFromCart')->name('removeFromCart');
 
 });
+
+
+
+//CHWCKOUT MANGEMENTS 
+Route::controller(CheckoutController::class)->group( function(){
+
+    Route::get('/checkout', 'checkout')->middleware('auth')->name('checkout');
+
+});
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -31,7 +31,7 @@
 
                     </h6>
                  
-                    <a href="#" class="btn btn-sm btn-success">Checkout</a>
+                    <a href="{{route('checkout')}}" class="btn btn-sm btn-success">Checkout</a>
                     </div>
                  
                 @else
