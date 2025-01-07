@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Cart;
 use App\Models\Course;
@@ -42,8 +43,16 @@ Route::controller(CartController::class)->group( function(){
 Route::controller(CheckoutController::class)->group( function(){
 
     Route::get('/checkout', 'checkout')->middleware('auth')->name('checkout');
+    Route::get('/checkout.success', 'success')->middleware('auth')->name('checkout.success');
+    Route::get('/checkout.cancel', 'cancel')->middleware('auth')->name('checkout.cancel');
 
 });
+
+
+
+
+
+// });
 
 
 
