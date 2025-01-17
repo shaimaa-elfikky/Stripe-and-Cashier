@@ -62,10 +62,14 @@ class CheckoutController extends Controller
     public function cancel(Request $request)
     {
 
-       // dd($request->get('session_id') );
+     
 
          $session = $request->user()->stripe()->checkout->sessions->retrieve($request->session_id);
 
-         //dd($session);
+         $cart = Cart::findOrFail($session->metadata->cart_id);
+
+         $cart->delete();
+    
+         return redirect()->route('home', ['message' => 'Payment canceled!']);
     }
 }
