@@ -66,10 +66,10 @@ class CheckoutController extends Controller
 
          $session = $request->user()->stripe()->checkout->sessions->retrieve($request->session_id);
 
-         $cart = Cart::findOrFail($session->metadata->cart_id);
+        // $cart = Cart::findOrFail($session->metadata->cart_id);
 
-         $cart->delete();
+        // $cart->delete();
     
-         return redirect()->route('home', ['message' => 'Payment canceled!']);
+        // return redirect()->route('home', ['message' => 'Payment canceled!']);
     }
 }
