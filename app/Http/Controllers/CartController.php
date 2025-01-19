@@ -13,7 +13,7 @@ class CartController extends Controller
     {
 
         //$carts = Cart::with('courses')->where('session_id', session()->getId())->first();
-          
+
         return view('cart.index');
     }
 
@@ -22,12 +22,12 @@ class CartController extends Controller
     {
       
         $cart = Cart::firstOrCreate([
-            
+
             'session_id' => session()->getId(),
             'user_id'   => auth()->user() ? auth()->user()->id : null ,
-           
+
         ]);
-    
+
         $cart->courses()->syncWithoutDetaching($course);
 
         return back();
@@ -38,11 +38,11 @@ class CartController extends Controller
 
     public function removeFromCart(Course $course)
     {
-      
+
         $cart = Cart::session()->first();
-        
+
         abort_unless($cart ,404);
-        
+
         $cart->courses()->detach($course);
 
         return back();
