@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     $courses = Course::all();
-    
+
    // $carts = Cart::where('session_id', session()->getId())->first();
 
     return view('home',compact('courses'));
@@ -26,7 +26,7 @@ Route::controller(CoursesController::class)->group( function(){
 });
 
 
-//CARTS MANGEMENTS 
+//CARTS MANGEMENTS
 Route::controller(CartController::class)->group( function(){
 
     Route::get('/cart', 'index')->name('cart.index');
@@ -39,12 +39,12 @@ Route::controller(CartController::class)->group( function(){
 
 
 
-//CHWCKOUT MANGEMENTS 
-Route::controller(CheckoutController::class)->group( function(){
+//CHWCKOUT MANGEMENTS
+Route::controller(CheckoutController::class)->middleware('auth')->group( function(){
 
-    Route::get('/checkout', 'checkout')->middleware('auth')->name('checkout');
-    Route::get('/checkout.success', 'success')->middleware('auth')->name('checkout.success');
-    Route::get('/checkout.cancel', 'cancel')->middleware('auth')->name('checkout.cancel');
+    Route::get('/checkout', 'checkout')->name('checkout');
+    Route::get('/checkout.success', 'success')->name('checkout.success');
+    Route::get('/checkout.cancel', 'cancel')->name('checkout.cancel');
 
 });
 
